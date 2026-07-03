@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koninti Abhilash — Data Analyst</title>
+<meta name="description" content="Koninti Abhilash — Data Analyst & Machine Learning. SQL, Python, Power BI. Portfolio of data analytics projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F7F5;
+    --surface:#FFFFFF;
+    --border:#E3E1DB;
+    --ink:#14181D;
+    --muted:#5B6570;
+    --blue:#2451FF;
+    --green:#1E8E5A;
+    --radius:2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .display{font-family:'Space Grotesk',sans-serif;}
+  a{color:var(--blue);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:10;
+    background:rgba(247,247,245,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{
+    display:flex;justify-content:space-between;align-items:center;
+    height:60px;
+  }
+  nav .brand{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;letter-spacing:0.02em;}
+  nav .links{display:flex;gap:24px;font-family:'IBM Plex Mono',monospace;font-size:13px;}
+  nav .links a{color:var(--ink);}
+  nav .links a:hover{color:var(--blue);}
+
+  /* HERO */
+  header.hero{padding:80px 0 48px;border-bottom:1px solid var(--border);}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:0.08em;
+    color:var(--muted);text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  h1.name{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(40px,7vw,64px);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    margin-bottom:14px;
+  }
+  .role-line{
+    font-size:19px;color:var(--muted);
+    max-width:560px;margin-bottom:40px;
+  }
+  .role-line strong{color:var(--ink);font-weight:600;}
+
+  /* KPI TICKER — signature element */
+  .ticker{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--border);
+    background:var(--surface);
+  }
+  .stat{
+    padding:18px 16px;
+    border-right:1px solid var(--border);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .val{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:22px;font-weight:600;
+    display:flex;align-items:baseline;gap:4px;
+  }
+  .stat .delta{color:var(--green);font-size:14px;}
+  .stat .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:0.04em;
+    margin-top:4px;
+  }
+
+  @media (max-width:640px){
+    .ticker{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(2){border-right:none;}
+    .stat{border-bottom:1px solid var(--border);}
+  }
+
+  /* SECTIONS */
+  section{padding:56px 0;border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{
+    display:flex;align-items:baseline;gap:12px;
+    margin-bottom:28px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--muted);
+  }
+  h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:26px;font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .about-text{max-width:680px;font-size:17px;color:#2A2F35;}
+
+  /* SKILLS */
+  .skill-groups{display:flex;flex-direction:column;gap:18px;}
+  .skill-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .skill-row .cat{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--muted);
+    width:120px;flex-shrink:0;text-transform:uppercase;letter-spacing:0.04em;
+  }
+  .chip{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    padding:5px 10px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    border-radius:var(--radius);
+    color:var(--ink);
+  }
+
+  /* PROJECTS */
+  .project{
+    border:1px solid var(--border);
+    background:var(--surface);
+    padding:28px;
+    margin-bottom:20px;
+  }
+  .project-top{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    gap:16px;margin-bottom:6px;flex-wrap:wrap;
+  }
+  .project h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:19px;font-weight:600;
+  }
+  .project .stack{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--muted);
+  }
+  .project .year{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--muted);
+    white-space:nowrap;
+  }
+  .project ul{
+    list-style:none;margin-top:14px;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .project li{
+    font-size:14.5px;color:#2A2F35;
+    padding-left:16px;position:relative;
+  }
+  .project li::before{
+    content:"—";position:absolute;left:0;color:var(--muted);
+  }
+  .project li b{color:var(--ink);font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .project-links{margin-top:16px;display:flex;gap:16px;}
+  .project-links a{font-family:'IBM Plex Mono',monospace;font-size:13px;}
+
+  /* CERTS */
+  .cert-list{display:flex;flex-direction:column;}
+  .cert{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:14px 0;border-bottom:1px solid var(--border);
+    flex-wrap:wrap;gap:6px;
+  }
+  .cert:last-child{border-bottom:none;}
+  .cert .cname{font-size:15px;}
+  .cert .cid{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
+
+  /* CONTACT */
+  .contact-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;
+    max-width:560px;
+  }
+  @media (max-width:560px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{
+    border:1px solid var(--border);background:var(--surface);
+    padding:18px;
+  }
+  .contact-card .clabel{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;
+    margin-bottom:6px;
+  }
+  .contact-card a{font-size:15px;word-break:break-all;}
+
+  .resume-btn{
+    display:inline-block;margin-top:28px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;font-weight:600;
+    background:var(--ink);color:var(--bg);
+    padding:12px 22px;
+    border-radius:var(--radius);
+  }
+  .resume-btn:hover{background:var(--blue);text-decoration:none;}
+
+  footer{
+    padding:32px 0 48px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--muted);
+    text-align:center;
+  }
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease, transform 0.5s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">KA / DATA</div>
+    <div class="links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Hyderabad, India — B.Tech AI & ML, 2026</div>
+    <h1 class="name display">Koninti Abhilash</h1>
+    <p class="role-line">Data Analyst focused on <strong>SQL, Python, and Power BI</strong> — turning customer and transaction data into decisions companies can act on.</p>
+
+    <div class="ticker">
+      <div class="stat">
+        <div class="val">85% <span class="delta">▲</span></div>
+        <div class="label">Model Accuracy</div>
+      </div>
+      <div class="stat">
+        <div class="val">$747K</div>
+        <div class="label">Revenue Surfaced</div>
+      </div>
+      <div class="stat">
+        <div class="val">16.84%</div>
+        <div class="label">Churn Identified</div>
+      </div>
+      <div class="stat">
+        <div class="val">8,142</div>
+        <div class="label">Records Analyzed</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="section-num mono">01</span>
+      <h2>About</h2>
+    </div>
+    <p class="about-text">B.Tech graduate in Artificial Intelligence and Machine Learning with hands-on project experience in customer analytics, churn prediction, segmentation, and revenue analysis. Built end-to-end projects on banking and e-commerce datasets covering SQL analysis, machine learning models, and Power BI dashboards. Google Data Analytics and Stanford Machine Learning certified.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="section-num mono">02</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-row">
+        <span class="cat">SQL</span>
+        <span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">CTEs</span><span class="chip">Window Functions</span><span class="chip">Joins</span>
+      </div>
+      <div class="skill-row">
+        <span class="cat">Python</span>
+        <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Scikit-learn</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
+      </div>
+      <div class="skill-row">
+        <span class="cat">ML</span>
+        <span class="chip">Random Forest</span><span class="chip">K-Means</span><span class="chip">Decision Tree</span><span class="chip">SVM</span><span class="chip">PCA</span>
+      </div>
+      <div class="skill-row">
+        <span class="cat">Power BI</span>
+        <span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">Data Modeling</span><span class="chip">KPI Dashboards</span>
+      </div>
+      <div class="skill-row">
+        <span class="cat">Excel</span>
+        <span class="chip">Pivot Tables</span><span class="chip">XLOOKUP</span><span class="chip">INDEX-MATCH</span><span class="chip">SUMIF</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="section-num mono">03</span>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <h3>Digital Banking Customer Intelligence Dashboard</h3>
+          <div class="stack">Python · MySQL · Scikit-learn · Power BI · Excel</div>
+        </div>
+        <div class="year">2026</div>
+      </div>
+      <ul>
+        <li>Analyzed <b>2,512</b> banking transactions across <b>495</b> customers; engineered 8 features for model training.</li>
+        <li>Applied K-Means clustering to segment customers into 4 behavioral groups.</li>
+        <li>Built a Random Forest model for fraud and churn prediction at <b>85%</b> accuracy, flagging 190 high-risk customers.</li>
+        <li>Wrote SQL using CTEs, RANK, NTILE to surface <b>$747K</b> in revenue patterns; delivered an 8-visual Power BI dashboard.</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://github.com/abhilashkoninti" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <h3>E-Commerce Customer Churn Analysis &amp; Revenue Optimization</h3>
+          <div class="stack">Python · SQL · Power BI · Excel</div>
+        </div>
+        <div class="year">2025</div>
+      </div>
+      <ul>
+        <li>Analyzed <b>5,630</b> customer records through a full ETL pipeline.</li>
+        <li>Identified a churn rate of <b>16.84%</b>; calculated Customer Lifetime Value (CLV) by segment using SQL.</li>
+        <li>Found new customers with zero tenure were the highest churn segment, driving the majority of losses.</li>
+        <li>Delivered a 7-visual Power BI dashboard and a written onboarding-strategy recommendation.</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://github.com/abhilashkoninti" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <h3>Network Intrusion Detection Using Ensemble Machine Learning</h3>
+          <div class="stack">Python · Scikit-learn · Pandas · NumPy</div>
+        </div>
+        <div class="year">2026</div>
+      </div>
+      <ul>
+        <li>Built an ML-based intrusion detection system on NSL-KDD and CIC-IDS 2017 datasets across 4 attack categories.</li>
+        <li>Applied PCA for dimensionality reduction on high-dimensional network traffic data.</li>
+        <li>Trained and compared Decision Tree, Random Forest, and SVM classifiers.</li>
+        <li>Random Forest delivered the best accuracy across all four attack categories.</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://github.com/abhilashkoninti" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="section-num mono">04</span>
+      <h2>Certifications</h2>
+    </div>
+    <div class="cert-list">
+      <div class="cert">
+        <span class="cname">Google Data Analytics Professional Certificate — Coursera, 2026</span>
+        <span class="cid">GKACZ31W22A0</span>
+      </div>
+      <div class="cert">
+        <span class="cname">Supervised Machine Learning: Regression and Classification — Stanford / DeepLearning.AI</span>
+        <span class="cid">IC4Z0CNVNUWY</span>
+      </div>
+      <div class="cert">
+        <span class="cname">Data Analytics Job Simulation — Deloitte Australia via Forage, 2026</span>
+        <span class="cid">—</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="section-num mono">05</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="clabel">Email</div>
+        <a href="mailto:konintiabhilash2@gmail.com">konintiabhilash2@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="clabel">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/abhilash-koninti-012301327" target="_blank" rel="noopener">linkedin.com/in/abhilash-koninti</a>
+      </div>
+      <div class="contact-card">
+        <div class="clabel">GitHub</div>
+        <a href="https://github.com/abhilashkoninti" target="_blank" rel="noopener">github.com/abhilashkoninti</a>
+      </div>
+      <div class="contact-card">
+        <div class="clabel">Location</div>
+        <span>Hyderabad, India</span>
+      </div>
+    </div>
+    <a class="resume-btn" href="./Koninti_Abhilash_Resume.pdf" target="_blank" rel="noopener">↓ Download Resume (PDF)</a>
+  </div>
+</section>
+
+<footer>
+  Koninti Abhilash — Built and maintained on GitHub Pages.
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  items.forEach(i=>io.observe(i));
+</script>
+
+</body>
+</html>
